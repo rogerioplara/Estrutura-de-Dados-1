@@ -1,0 +1,307 @@
+Vetores
+    - arranjo
+    - array
+    - matrizes de uma única linha
+
+Em C são declarados igual a uma variável, porém o tamanho é definido na instânciação;
+Primeiro elemento na posição 0;
+Último elemento está na posição N-1;
+
+Sintaxe:
+<tipo><nome>[<tamanho>];
+int A[10];
+
+Declaração com lista de inicialização:
+<tipo><nome>[<tamanho>]={<v1>,<v2>,...,<vN>};
+int B[3]={15,66,42};
+
+Para acessar os elementos:
+<nome_do_vetor>[<índice>];
+
+---------------------------------------------------------------
+
+Matrizes (bidimensional)
+    - arranjo tabular de MxN valores, onde M é o número de linhas e N é o número de colunas;
+    - os elementos são acessíveis também por índices:
+        - i geralmente associado às linhnas;
+        - j geralmente associado às colunas;
+    - em uma matriz MxN:
+        - índices variam de 0 a M-1 e de 0 a N-1;
+
+Sintaxe:
+<tipo><nome>[<dim1>][<dim2>]...[<dimN>];
+
+Declaração de Matriz bidimensional:
+int A[3][3];
+
+Para acessar os valores:
+A[0][0];
+A[2][2];
+A[0][2];
+A[1][0];
+
+---------------------------------------------------------------
+
+Estrutura de dados Heterogêneas (struct em C)
+    - também conhecidas como registros, tipos de dados compostos, Structs(C);
+    - agrupam informações de tipos de dados diferentes;
+    - trata um grupo de valores como sendo uma única variável, com vários campos distintos;
+    - cria-se um novo tipo de dados;
+
+Sintaxe:
+struct <nome_do_registro>{
+    <tipo> <nome_do_campo1>;
+    <tipo> <nome_do_campo2>;
+    <tipo> <nome_do_campo3>;
+    ...
+    <tipo> <nome_do_campoN>;
+};
+
+Como utilizar:
+    - apenas definir não basta;
+    - é preciso criar uma variável do novo tipo criado;
+
+Sintaxe de instânciação da variável struct:
+    struct <nome_do_registro> <nome_da_variavel>;
+    struct produto p1;
+
+Acesso à struct:
+    - utiliza-se o nome da variável estática seguida de um ponto (.);
+    <nome_da_variável>.<campo>;
+    p1.preco;
+
+Registros podem ser combinados com vetores:
+    i. declara-se um novo registro;
+    ii. cria-se um vetor de registros (assim como se cria uma variável do tipo registro);
+
+Exemplo: criar uma lista de produtos:
+    - vetor de registros do tipo "produto";
+
+---------------------------------------------------------------
+
+# Ponteiros
+
+## Variável -> Endereço de memória;
+    - conteúdo armazenado, fisicamente, em uma posição de memória;
+
+## Cada tipo primitivo possui um tamanho e uma estrutura próprios, em memória:
+    - Char: 1 byte;
+    - Int: 4 btyes;
+    - Float: 4 bytes;
+    - Double: 8 bytes;
+
+# Alocação Dinâmica de Memória;
+    
+    Alocação estática:
+        - Reserva espaço de memória em tempo de compilação;
+        - Pode ser mais rápida durante a execução;
+        - Pode desperdiçar memória;
+
+    Alocação Dinâmica:
+        - Reserva espaços de memória em tempo de execução;
+        - Pode ser mais lenta durante a execução;
+        - Otimiza o uso da memória;
+
+        Uso de memória alocada dinamicamente:
+            - tentativa de aproveitar toda a ram disponível;
+            - cada máquina disponibiliza um espaço total de ram de tamanho próprio;
+            - solução: alocar memória, dinamicamente, conforme a necessidade;
+
+        Aplicações (exemplos):
+            - processadores de texto (word);
+            - bancos de dados;
+
+PARA UTILIZAR A ALOCAÇÃO DINÂMICA
+
+Biblioteca stdlib.h
+
+malloc();
+    - aloca um bloco de bytes em memória;
+    - caso malloc() não consiga alocar um bloco:
+        - Retorna NULL
+        - caso contrário: retorna um ponteiro do tipo VOID contendo o endereço inicial do bloco;
+    - manipula-se o conteúdo da variável dinâmica com o operador asterisco(*);
+
+    sintaxe:
+    *<variável_ponteiro = <valor>;
+
+    sintaxe:
+    <ponteiro> = (<cast>*) malloc(<tam. em bytes>);
+
+    cast: define o tipo do ponteiro -> int, float, struct, char...
+
+    malloc retorna um endereço do tipo VOID (não processável. por isso é necessário fazer o cast);
+
+free();
+    - libera o espaço de memória alocado a um ponteiro;
+
+    sintaxe:
+    free(<ponteiro>);
+
+---------------------------------------------------------------
+
+Listas, filas e pilhas
+    
+    Listas (computação)
+    - Arranjo no qual a ordem dos elementos da lista coincide com sua posição física (em memória);
+        - elementos adjacentes na lista ocupam posiçãos contíguas em memória;
+        - dois tipos específicos: pilhas e filas;
+
+    ## Pilhas (stack) LIFO - last in first out
+
+    - Lista linear em que todos os acesso se dão em uma única extremidade - o TOPO;
+        ex: pilha de livros, pilha de pratos;
+    - Os elementos só podem ser inseridos no topo e só podem ser retirados pelo topo;
+    -> Novo elemento: Push
+    -> Retirar elemento: Pop;
+
+    Funções: 
+        Push(elemento); -> recebe como parâmetro o elemento;
+        Pop(); -> retorna o elemento que está retirando;
+
+    Aplicações: 
+        - avançar e voltar em navegadores;
+        - desfazer e refazer em editores;
+        - recursividade;
+        - chamada e execução de funções;
+
+    Operações sobre pilhas
+        - empilhar (push);
+        - desempilhar (pop);
+
+    ## Filas (queue) FIFO - first in first out
+
+    - a inserção de elementos é feita apenas ao FIM da fila;
+    - a remoção de elementod só pode ser feita pela frente;
+
+    FIFO
+        Os dados são processados segundo a ordem de chegada;
+
+    Operações com filas:
+        Enfileirar(push_back);
+        Desenfileirar(pop);
+
+---------------------------------------------------------------
+
+Listas Dinâmicas
+    é muito mais simples interpretar listas, pilhas e filas quando implementadas em um vetor estático.
+    - Vantagens da implementação estática:
+        acesso direto a elementos;
+        lista ordenada: busca binária;
+
+    - Desvantagens:
+        nem sempre se sabe o índice do dado para acessar diretamente (necessita de busca);
+        inserção/remoção ruins: "Arrastar os dados";
+        O tamanho do vetor fica "engessado"
+    
+    Solução: permitir que os dados ocupem qualquer posição em memória (posições não contíguas);
+    Gerencia-se a ordem dos elemntos através de referências que eles fazem entre si;
+
+Intenção: Evitar a definição de um número máximo de elementos estaticamente
+    - deixar que o número máximo de elementos evolua dinamicamente em tempo de execução;
+
+    A orde (lógica) dos elementos da lista (nós) não, necessariamente, deve coincidir com sua posição em memória.
+
+    LISTA LIGADA OU LISTA ENCADEADA
+        - Utiliza a estrutura nó (regustro-struct)
+
+        exemplo:
+        struct NO{
+            int dado;
+            struct NO* prox;
+        };
+
+    Para desenvolver listas dinâmicas em linguagem C:
+        - Funções de alocação de memória;
+        - malloc(), sizeof() e free();
+
+    Estrutura nó (registro - struct)
+        Dados: definidos pela aplicação (chaves/valor);
+        Referência para o próximo elemento da lista;
+            Ponteiro do tipo NÓ;
+
+    O começo da lista é demarcado por um ponteiro (sentinela) chamado 'inicio';
+
+    Ponteiros que armazenam o valor "NULL"
+        - tem o significado de "não apontar para elemento algum";
+
+    Outros tipos:
+        Lista duplamente encadeada;
+        Lista circular;
+
+INSERÇÃO DE DADOS (lista):
+    Não há regras: pode-se inserir em qualquer posição;
+    
+    CUIDADO: dependendo da posição da inserção, podem haver casos específicos:
+        lista vazia; inicio da lista; meio da lista; fim da lista;
+
+    Primeiro passo: alocar um novo nó (malloc);
+    Segundo passo: percorer a lista (ponteiro);
+    Terceiro passo: atualizar os ponteiros;
+
+REMOÇÃO DE DADOS (lista):
+    A exclusão de elementos de uma lista encadeada é semelhante a inserção;
+    O algoritmo deve prever alguns casos específicos:
+        - remoção do primeiro elemento;
+        - exclusão de um elemento qualquer;
+    
+    Primeiro passo: percorrer a lista;
+    Segundo passo: encontrar a posição de remoção;
+    Terceiro passo: atualizar os ponteiros;
+    Quarto passo: liberar memória;
+
+IMPRESSÃO DE DADOS (lista);
+
+    para struct ponteiro utilizar o operador ->
+
+    void imprimir(struct NO* ptr){
+        system("cls");
+        while(ptr! = NULL){
+            printf("%d", ptr->dado);
+            ptr = ptr->prox;
+        }
+    }
+
+---------------------------------------------------------------
+
+Pilhas dinâmicas
+
+    Estrutura NÓ
+        typedef struct NO{
+            int dado;
+            struct NO* prox;
+        }NO;
+
+    Estrutura Pilhas
+        typedef struct PILHA{
+            NO* topo;
+        }PILHA;
+
+    Variável do tipo PILHA
+        PILHA *p;
+
+    Função Empilha() ou Push()
+
+    void empilha(){
+        NO* ptr = (NO *) malloc(sizeof(NO));
+        ptr->dado = rand()%100;
+        ptr->prox = p->topo;
+        p->topo = ptr;
+    }
+
+    Função Desempilha() ou Pop()
+
+    int desempilha(){
+        NO* ptr = p->;
+        int dado;
+        if(ptr != NULL){
+            p->topo = ptr->prox;
+            ptr->prox = NULL;
+            dado = ptr->dado;
+            free(ptr);
+            return dado;
+        }
+    }
+
+
+
