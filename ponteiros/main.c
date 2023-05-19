@@ -30,12 +30,16 @@ int main()
     return (0);
 }
 
-void ponteiros(){
+void ponteiros()
+{
     int *p;
-    p = (int *) malloc(int);
-    if(p==NULL){
+    p = (int *)malloc(sizeof(int));
+    if (p == NULL)
+    {
         printf("Erro!\n");
-    } else {
+    }
+    else
+    {
         *p = 10;
         printf("p: %d\n", *p);
         free(p);

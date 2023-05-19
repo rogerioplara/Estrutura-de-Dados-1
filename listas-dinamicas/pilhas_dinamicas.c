@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Estrutura NÓ
+//Estrutura N�
 typedef struct NO {
     int dado;
     struct NO* prox;
@@ -12,13 +12,13 @@ typedef struct PILHA {
     NO* topo;
 }PILHA;
 
-//Variável do tipo PILHA
+//Variavel do tipo PILHA
 PILHA* p;
 
 void empilha() {
     //aloca o novo nó ptr de tamanho struct nó e atribui ao ponteiro ptr
     NO* ptr = (NO*)malloc(sizeof(NO));
-    //atribui um valor aleatório ao dado
+    //atribui um valor aleat�rio ao dado
     ptr->dado = rand() % 100;
     //atualiza o ponteiro prox para ser o novo topo
     ptr->prox = p->topo;
@@ -27,11 +27,11 @@ void empilha() {
 }
 
 int desempilha() {
-    //cria um ponteiro apontando para o topo e cria uma variável de retorno
+    //cria um ponteiro apontando para o topo e cria uma variavel de retorno
     NO* ptr = p->topo;
     int dado;
 
-    //verifica se a pilha está vazia
+    //verifica se a pilha esta vazia
     if (ptr != NULL) {
         //atualiza o valor do topo da pilha
         p->topo = ptr->prox;
@@ -39,14 +39,14 @@ int desempilha() {
         ptr->prox = NULL;
         //armazena o valor do retorno
         dado = ptr->dado;
-        //libera memória / destrói o elemento
+        //libera mem�ria / destroi o elemento
         free(ptr);
-        //retorno da função
+        //retorno da funcao
         return dado;
     }
 }
 
 int main()
 {
-    printf("Olá mundo");
+    printf("Ola mundo");
 }

@@ -33,7 +33,7 @@ void ponteiro2(){
 
 void ponteiro3(){
     int *p;
-    p = (int *) malloc(int);
+    p = (int *) malloc(sizeof(int));
     if(p==NULL){
         printf("Erro!\n");
     } else {
