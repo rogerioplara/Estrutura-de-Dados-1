@@ -307,7 +307,30 @@ Pilhas din�micas
 
 Fila Dinâmica
 
-    - implementação
+    - implementação dinâmica:
+        estrutura nó:
+            dado;
+            próximo elemento;
+        ponteiros:
+            referência para o início da fila;
+            referência para o fim da fila;
+            pode-se utilizar ambos os ponteiros ou apenas um:
+                - depende da sua implementação;
         
+    Estrutura nó:
+        dado
+        próximo nó
+
+    typedef struct NO{
+        int dado;
+        struct NO* prox;
+    }NO;
+
+    typedef struct FILA{
+        NO* inicio;
+        NO* fim;
+    }FILA;
+
+    FILA *p;
 
 
