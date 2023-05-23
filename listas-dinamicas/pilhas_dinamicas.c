@@ -47,5 +47,5 @@ int desempilha() {
 }
 
 int main(){
-    printf("Ola mundo");
+    printf("Ola mundo\n");
 }
