@@ -18,7 +18,8 @@ int B[3]={15,66,42};
 Para acessar os elementos:
 <nome_do_vetor>[<�ndice>];
 
----------------------------------------------------------------
+----------------------------------------------
+
 
 Matrizes (bidimensional)
     - arranjo tabular de MxN valores, onde M � o n�mero de linhas e N � o n�mero de colunas;
@@ -40,7 +41,9 @@ A[2][2];
 A[0][2];
 A[1][0];
 
----------------------------------------------------------------
+----------------------------------------------
+
+
 
 Estrutura de dados Heterog�neas (struct em C)
     - tamb�m conhecidas como registros, tipos de dados compostos, Structs(C);
@@ -77,7 +80,9 @@ Registros podem ser combinados com vetores:
 Exemplo: criar uma lista de produtos:
     - vetor de registros do tipo "produto";
 
----------------------------------------------------------------
+----------------------------------------------
+
+
 
 # Ponteiros
 
@@ -138,7 +143,9 @@ free();
     sintaxe:
     free(<ponteiro>);
 
----------------------------------------------------------------
+----------------------------------------------
+
+
 
 Listas, filas e pilhas
 
@@ -181,7 +188,9 @@ Listas, filas e pilhas
         Enfileirar(push_back);
         Desenfileirar(pop);
 
----------------------------------------------------------------
+----------------------------------------------
+
+
 
 Listas Din�micas
     � muito mais simples interpretar listas, pilhas e filas quando implementadas em um vetor est�tico.
@@ -262,7 +271,9 @@ IMPRESS�O DE DADOS (lista);
         }
     }
 
--------------------------------------------------------------
+----------------------------------------------
+
+
 
 Pilhas din�micas
 
@@ -303,7 +314,9 @@ Pilhas din�micas
         }
     }
 
------------------------------------------------------
+----------------------------------------------
+
+
 
 Fila Dinâmica
 
@@ -334,3 +347,196 @@ Fila Dinâmica
     FILA *p;
 
 
+----------------------------------------------
+
+TEORIA DOS GRAFOS: modelar elementos e suas relações
+
+    Sete pontes de Konigsberg
+        surgimento da teoria dos grafos;
+        - Euler (1736) teoria dos grafos;
+    Problema: passar por todas as pontes sem repetir alguma delas;
+        - Euler: provou que não há solução;
+        - Modelagem do problema em forma de grafo;
+            cada porção de terra: vértice;
+            cada ponte: aresta;
+    Prova de Euler:
+        Só é possível se houver zero ou dois vértices com número ímpar de arestas;
+    - Nenhum vértice com número ímpar de arestas:
+        Vértices de grau par (grau 2): é possível chegar ao vértice por uma das arestas e sair pela aresta restante;
+    - Dois vértices com número ímpar de arestas:
+        Vértices de grau impar (grau 3): é possível chegar ao vértice por uma das arestas, sair por outra e ainda restará uma aresta;
+        Nesse caso, um dos vértices de grau ímpar deve ser o vértice inicial e o outro deve ser o vértice final;
+
+    Teoria dos grafos
+        Grafos: estrutura abstrata que representa um conjunto de elementos chamados vértices, e sua relações de interdependência chamadas arestas;
+    
+    Elementos de um grafo:
+        Nós ou vértices;
+            - ponderados (pesos) ou não;
+        Arestas;
+            - orientadas ou não orientadas;
+            - ponderadas (pesos) ou não;
+
+        Utilidade:
+            estudar a relação entre objetos de um determinado conjunto;
+            problemas modelados sob grafos;
+            muitos algoritmos prontos;
+
+        Notação formal: um grafo pode ser definido como uma tupla G = (V,E);
+            V é o conjunto de vértices Vi, senque que V != vazio;
+            O conjunto E possui as arestas cujos elementos são pares ordenados de vértices (Vi, Vj);
+    
+        Vértices adjacentes:
+            vértices a e b para os quais existe uma aresta interconectando-os;
+        Aresta Incidente:
+            aresta que se conecta a um vértice;
+        Grau de vértice (não orientadas):
+            número de arestas incidentes;
+        Grau de saída (orientadas):
+            número de arestas que partem de um vértice;
+        Grau de entrada (orientadas):
+            número de arestas que chegam a um vértice;
+
+    Exemplo 1: pontes de Konigsberg:
+        G1 = (V1,E1)
+        V1 = {a, b, c, d}
+        E1 = {(a,b); (a,b); (a,d); (b,c); (b,c); (b,d); (c,d)}
+
+    Exemplo 2: árvore:
+        G2 = (V2,E2)
+        V2 = {1, 2, 3, 4, 5, 6, 7}
+        E2 = {(1,2); (1,3); (1,4); (2,5); (4,6); (4,7)}
+
+    Grafo conexo: todos os vértices devem ser 'atingíveis';
+    
+    Grafo orientad (dígrafo): o par ordenado de vértices (aresta) tem orientação;
+        G3 = (V3,E3)
+        V3 = {a, b, c, d}
+        E3 = {<a,b>; <a,d>; <c,b>; <d,a>}
+    
+    Grafo cíclico: é possível sair de um vértice V, caminhar pelo grafo e retornar a V sem repetir arestas;
+
+    Grafo ponderado: o par ordenado de vértices possui pesos associados a ele;
+
+    G4 = (V4,E4)
+    V4 = {a, b,, c, d}
+    E4 = {(a,b,5); (a,d,10); (b,c,25); (b,d,0); (c,d,7)}
+
+    O problema das pontes foi o promeiro a ser modelado, matematicamente, por um grafo:
+        - desde então diversos algoritmos foram criados para solucionar problemas recorrentes.
+    Sua utilização é muito comum quando:
+        - existem diversos elementos (vértices) e relações entre pares de elementos (arestas);
+        - quando necessário extrair algum "custo" do relacionamento entre elementos;
+        - quando é necessário extrair novos relacionamentos a partir dos existentes;
+
+    Exemplo 1: desenvolviemtno de um website:
+        - vértices: páginas;
+        - arestas: links entre páginas;
+        - problemas:
+            verificar se todas as páginas estão ligadas;
+            se o usuário tem a possibilidade de acessar todo o conteúdo;
+            se a estrutura tem boa navegabilidade;
+
+    Exemplo 2: empresa de logística:
+        - vértices: localização dos clientes;
+        - arestas: distância entre os clientes;
+        - problemas: traçar as possíveis rotas de entrega;
+        - soluções:
+            busca em largura (BFS);
+            algoritmo de Djikstra;
+                bfs guloso;
+                menor custo possível;
+
+    Exemplo 3: empresa de transporte aéreo:
+        - vértices: aeroportos;
+        - arestas: voos;
+        - problemas:
+            encontrar voos diretos;
+            encontrar possibilidades de conexões;
+            encontrar oções relacionados a:
+                custo de passagem;
+                tempo de espera no aeroporto;
+                tempo total da viagem;
+                modelo das aeronaves;
+
+REPRESENTAÇÃO COMPUTACIONAL
+
+    Tipos de representação:
+        Vantagens x Desvantagens
+        - aspectos:
+            tempo (complexidade) de implementação;
+            uso de memória;
+            custo computacional;
+        - estrutura de dados:
+            vetores;
+            matrizes;
+            alocação dinâmica;
+
+    3 formas:
+        1 - Vetor de arestas;
+        2 - Matriz de adjacências;
+        3 - Listas de adjacência;
+
+    Estrutura em matriz, linhas e colunas representam os vértices;
+        considere dois vértices Vi e VJ;
+        ADJ é a matriz de adjacência;
+        ADJ[Vi][Vj] = 1 existe a aresta;
+        ADJ[Vi][Vj] = 0 não existe aresta;
+    
+    Vetor de arcos (arestas):
+        estrutura mais simples;
+        menos eficiente;
+        define-se estrutura chamada "arco";
+            arco = par de vértices (vi,vj);
+        cria-se o vetor "grafo" que armazena arcos;
+
+    #define TAM 25
+
+    typedef struct arc{
+        int vi;
+        int vj;
+        int peso;
+    }arc;
+
+    arc grafo[TAM];
+
+    Lista de adjacências
+        para cada vértice, uma lista de seus adjacentes;
+
+        Define-se uma estrutura chamada Nó:
+        nó = vértice VJ e ponteiro para nó
+
+        cria-se um vetor de nós;
+
+        Para cada posição Vi no vetor, se Vj é adjacente adicione-o na lista;
+
+        #define N 5
+        typedef struct str_no{
+            int v;
+            str_no *proximo;
+        }str_no;
+
+        str_no grafo[n];
+
+        Vi
+        0->V1->V3
+        1->V0
+        2->V4->V1
+        3
+        4->V1->V2->V3
+
+        grafo (não orientado):
+        Vi
+        0->2
+        1->2->3
+        2->0->1->4
+        3->1
+        4->2
+
+    Implementação simples utilizando estruturas estáticas:
+        - Matriz de adjacências - grafo não orientad.
+        - Operacoes:
+            1 - inicializar o grafo (escolher o tamanho - numero de vértices);
+            2 - inserir aresta;
+            3 - remover aresta;
+            4 - exibir matriz de adjacências;
