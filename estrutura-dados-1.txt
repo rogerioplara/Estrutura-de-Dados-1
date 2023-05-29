@@ -540,3 +540,70 @@ REPRESENTAÇÃO COMPUTACIONAL
             2 - inserir aresta;
             3 - remover aresta;
             4 - exibir matriz de adjacências;
+
+----------------------------------------------
+
+Busca em Grafos
+
+    Algoritmos prontos para utilização
+
+    Busca em profundidade - Depth-first searc (DFS)
+        explora o grafo investigando o novo vértice adjacente, em seguida, o adjacente do adjacente, etc.
+    - Todo um segmento do grafo é visitado até o final, antes de um novo caminho ser investigado;
+    - A partir do nó inicial, empilham-se os nós adjacentes e marca o nó corrente como visitado. Em seguida, pega-se o nó do topo da pilha e repete-se o processo. Não havendo mais adjacentes, desempilha-se e repete o processo, até que a pilha esteja vazia; 
+
+    Pseudocódigo - algoritmo
+
+    DFS(Grafo G, Vértice inicio):
+        Marque início como visitado e empilhe-o
+        Se corrente tem vértico V adjacente não visitado    
+            Marque v como visitado, empilhe v
+        Senão
+            Desempilhe
+        Se pilha não vazia
+            Volte ao passo 3
+        Se não
+            Encerre o algoritmo
+
+    Busca em Largura - Breadth-first search (BFS)
+        Explora o gráfico investigando todos os vértices adjacentos por primeiro, de uma vez, antes que um novo caminho seja investigado.
+    - A partir do nó inicial, para cada nó adjacente, enfilera-o e marca visitado. Quando não houver mais adjacentes, desenfilera-se um vértice, usa-se o nó da frente como vértice corrente e repete o processo até que a lista se esvazie;
+
+1   BFS(Grafo G, Vértice inicio):
+2       Marque início como visitado e enfilere-o
+3       Para cada vertice v adjacente ao corrente
+4           Marque v como visitado, enfilere V
+5       Desenfilere
+6       Se a fila não está vazia
+7           volte ao passo 3
+8       Se não
+9           Encerre o algoritmo
+    
+Algoritmo de Djikstra
+    Como encontrar o caminho de menor custo em um grafo conexo onde as arestas tem peso não negativo;
+
+Baseado no algoritmo busca em largura (BFS)
+    Algoritmo guloso - tenta todas as possibilidades;
+        - encontra o ótimo global a partir de ótimos locais;
+    
+    Aplicações:
+        Roteamento de pacotes;
+        Trafego urbano e aéreo, GPS, Ferrovias;
+        Automação industrial;
+
+Princípios para funcionamento:
+    - Matriz de custos: pesos associados a cada par de vértices (arestas);
+    - Ao visitar um vértice, adiciona-se na fila apenas os nós cujo acesso é o de menor custo acumulado;
+    - Sempre encontra o caminho ótimo entre dois nós quaisquer de um grafo;
+
+1   Djikstra(Grafo G, Vértice inicia, Vértice final):
+2       corrente <- início
+3       Para cada vértice v adjacente a corrente
+4           calcule o custo de inicio até V
+5           O custo é o menor até o momento?
+6               corrent <- V
+7       Corrente <- vertice com menor custo desde o inicio
+8       Se corrente = final
+9           encerre o algoritmo
+10       Se não
+11          volte ao passo 3

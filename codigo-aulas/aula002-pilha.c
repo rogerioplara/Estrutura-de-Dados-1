@@ -11,7 +11,7 @@ struct tipo_pilha {
 
 struct tipo_pilha pilha;
 
-// a cada chamada da função, empilha o novo elemento na última posição (push);
+// a cada chamada da funcao, empilha o novo elemento na ultima posicao (push);
 void empilha(int elemento){
     if(pilha.topo==tamanho){
         printf("Fila cheia.\n");
@@ -23,7 +23,7 @@ void empilha(int elemento){
     }
 }
 
-// a cada chamada da função, desempilha o último elemento na última posição e retorna (pop);
+// a cada chamada da funcao, desempilha o ultimo elemento na ultima posicao e retorna (pop);
 int desempilha(){
     int elemento;
     if(pilha.topo==pilha.ini){

@@ -85,9 +85,6 @@ int main(){
             scanf("%d, %d", &num1, &num2);
             remover_aresta_matriz(num1, num2);
             break;
-        default:
-            printf("Opcao Invalida!\n");
-            break;
         }
     }
 }
