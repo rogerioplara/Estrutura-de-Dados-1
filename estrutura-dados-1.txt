@@ -607,3 +607,15 @@ Princípios para funcionamento:
 9           encerre o algoritmo
 10       Se não
 11          volte ao passo 3
+
+Exercícios:
+
+1. Qual é a principal diferença entre a Busca em Largura e a Busca em Profundidade?
+    A busca em profundidade utiliza o empilhamento dos elementos e faz a busca de um primeiro caminho até o fim, depois vai desempilhando e fazendo os caminhas a partir dos elementos já visitados. A busca em largura enfileira os nós visitados, garantindo que todos os nós adjacentes ao nó atual sejam percidos para então visitar os mais distantes;
+
+2. Em que caso a Busca em Largura é mais eficiente que a Busca em Profundidade? 
+    A busca em largura (BFS) é geralmente mais eficiente em casos que a solução mais próxima da raiz é desejada. Quando o grafo possui ramificação elevada.
+
+3. O que diferencia o algoritmo de Dijkstra e a busca em largura?
+    O algoritmo de Dijkstra tem como objetivo buscar o caminho mais "barato" em um grafo onde os vértices tenham um "custo". Apesar da semelhança com o meio de percorrer o grafo, o algoritmo de Dijkstra possui uma finalidade específica para esse tipo de busca. 
+
