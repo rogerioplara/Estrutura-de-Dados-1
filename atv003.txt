@@ -1,0 +1,9 @@
+A estrutura inicial do código representa uma lista simplesmente encadeada, onde existem dentro da estrutura um valor inteiro e um ponteiro para o próximo elemento da lista.
+O procedimento trata-se de uma remoção, onde são recebidos por parâmetro o endereço da lista e um número para ser removido.
+Inicia-se o procedimento criando 2 ponteiros, um que apontará para o valor que será removido e um ponteiro auxiliar, ambos inicializados com NULL.
+O primeiro IF verifica se a lista possui algum conteúdo.
+O segundo IF faz a comparação do primeiro valor da lista com o valor que será removido. Caso for verdadeiro, o ponteiro nó recebe a lista e a lista recebe o endereço do segundo elemento. Deve ser feito dessa forma pois é o primeiro elemento da lista, caso não tenha esse "backup" de variável auxiliar, a lista seria perdida.
+Caso o valor que queira excluir não seja o primeiro elemento, a execução vai para o Else e será necessário fazer o uso de uma variável auxiliar.
+A variável auxiliar recebe o endereço da lista e inicia-se o loop While de comparação dos valores. A condição do loop é de que, enquanto existir um valor no próximo elemento e o valor do próximo elemento seja diferente do número que está sendo buscado, continua a execução do loop até ser encontrado. 
+Quando o número for encontrado, sairá do loop e entrará no próximo IF, que fará a verificação se existe um elemento após o elemento que estava buscando. Caso exista, o ponteiro desse próximo elemento será atribuído ao ponteiro nó e altera o ponteiro da variável auxiliar, que fará a ligação dos elementos novamente. Caso seja o último elemento, fará com que o novo último elemento aponte para nulo. Caso seja um elemento do meio da lista, fará com que o elemento aponte para o próximo do que foi retirado.
+Por fim, se o valor do elemento a ser retirado não for NULL, libera o espaço de memória, "excluindo" assim o elemento em questão.

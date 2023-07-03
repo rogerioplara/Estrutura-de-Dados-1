@@ -66,7 +66,7 @@ void fila_mostrar(ptr_no fila){
         printf("%d, ", fila->dado);
         fila = fila->proximo;
     }
-    printf("%d, ", fila->dado);
+    //printf("%d, ", fila->dado);
 }
 
 int main(){
