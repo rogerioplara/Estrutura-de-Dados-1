@@ -11,7 +11,7 @@ typedef struct FILA{
     NO* fim; //fim da fila;
 }FILA;
 
-FILA *p; //instância do tipo fila
+FILA *f; //instância do tipo fila
 
 void enfileira(){
     //criação de um novo elemento dinamicamente
