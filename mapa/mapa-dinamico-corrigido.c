@@ -15,79 +15,87 @@ typedef struct FILA {
 } FILA;
 
 typedef struct PILHA {
-    ptr_no base;
     ptr_no topo;
 } PILHA;
 
-void pilha_inserir(ptr_no pilha, char letra) {
-    while (pilha->proximo != NULL) {
-        pilha = pilha->proximo;
-    }
-    pilha->proximo = (ptr_no)malloc(sizeof(no));
-    pilha = pilha->proximo;
-    pilha->dado = letra;
-    pilha->proximo = NULL;
+void pilha_inserir(PILHA* pilha, char letra) {
+    ptr_no novo_no = (ptr_no)malloc(sizeof(no));
+    novo_no->dado = letra;
+    novo_no->proximo = pilha->topo;
+    pilha->topo = novo_no;
 }
 
-void pilha_mostrar(ptr_no pilha) {
-    while (pilha != NULL) {
-        printf("%c", pilha->dado);
-        pilha = pilha->proximo;
+void pilha_mostrar(PILHA* pilha) {
+    ptr_no atual = pilha->topo;
+    while (atual != NULL) {
+        printf("%c", atual->dado);
+        atual = atual->proximo;
     }
 }
 
-void fila_inserir(ptr_no fila, char letra) {
-    while (fila->proximo != NULL) {
-        fila = fila->proximo;
+void fila_inserir(FILA* fila, char letra) {
+    ptr_no novo_no = (ptr_no)malloc(sizeof(no));
+    novo_no->dado = letra;
+    novo_no->proximo = NULL;
+
+    if (fila->inicio == NULL) {
+        fila->inicio = novo_no;
+        fila->fim = novo_no;
+    } else {
+        fila->fim->proximo = novo_no;
+        fila->fim = novo_no;
     }
-    fila->proximo = (ptr_no)malloc(sizeof(no));
-    fila = fila->proximo;
-    fila->dado = letra;
-    fila->proximo = NULL;
 }
 
-char fila_remover(ptr_no fila) {
-    ptr_no atual;
-    atual = fila->proximo;
-    fila->proximo = atual->proximo;
+char fila_remover(FILA* fila) {
+    if (fila->inicio == NULL) {
+        printf("A fila está vazia.\n");
+        return '\0';
+    }
+
+    ptr_no atual = fila->inicio;
     char dado = atual->dado;
+    fila->inicio = fila->inicio->proximo;
+
+    if (fila->inicio == NULL) {
+        fila->fim = NULL;
+    }
+
     free(atual);
     return dado;
 }
 
-void fila_mostrar(ptr_no fila) {
-    while (fila != NULL) {
-        printf("%c", fila->dado);
-        fila = fila->proximo;
+void fila_mostrar(FILA* fila) {
+    ptr_no atual = fila->inicio;
+    while (atual != NULL) {
+        printf("%c", atual->dado);
+        atual = atual->proximo;
     }
 }
 
 int main() {
-    int n;
-
-    printf("Quantidade de elementos que serao sequenciados: ");
-    scanf("%d", &n);
-
-    char sequencia[n];
-
-    printf("Digite a sequencia (A, T, C, G): ");
+    char sequencia[100];
+    printf("Digite a sequencia de DNA (A, T, C, G): ");
     scanf("%s", sequencia);
 
-    ptr_no fila = (ptr_no)malloc(sizeof(no));
-    fila->proximo = NULL;
+    int sequenciaTamanho = strlen(sequencia);
 
-    for (int i = 0; i < n; i++) {
-        fila_inserir(fila, sequencia[i]);
+    FILA fila;
+    fila.inicio = NULL;
+    fila.fim = NULL;
+
+    for (int i = 0; i < sequenciaTamanho; i++) {
+        fila_inserir(&fila, sequencia[i]);
     }
 
     printf("Fila: ");
-    fila_mostrar(fila);
+    fila_mostrar(&fila);
 
-    ptr_no pilha = (ptr_no)malloc(sizeof(no));
-    pilha->proximo = NULL;
+    PILHA pilha;
+    pilha.topo = NULL;
 
-    for (int i = 0; i < n; i++) {
-        char letra = fila_remover(fila);
+    for (int i = 0; i < sequenciaTamanho; i++) {
+        char letra = fila_remover(&fila);
         switch (letra) {
             case 'A':
                 letra = 'T';
@@ -102,11 +110,11 @@ int main() {
                 letra = 'C';
                 break;
         }
-        pilha_inserir(pilha, letra);
+        pilha_inserir(&pilha, letra);
     }
 
     printf("\nPilha: ");
-    pilha_mostrar(pilha);
+    pilha_mostrar(&pilha);
 
     return 0;
 }
