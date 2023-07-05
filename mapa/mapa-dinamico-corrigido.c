@@ -74,15 +74,17 @@ void fila_mostrar(FILA* fila) {
 }
 
 int main() {
-    char sequencia[100];
+    char sequencia[999];
     printf("Digite a sequencia de DNA (A, T, C, G): ");
     scanf("%s", sequencia);
 
     int sequenciaTamanho = strlen(sequencia);
 
     FILA fila;
+    PILHA pilha;
     fila.inicio = NULL;
     fila.fim = NULL;
+    pilha.topo = NULL;
 
     for (int i = 0; i < sequenciaTamanho; i++) {
         fila_inserir(&fila, sequencia[i]);
@@ -90,9 +92,6 @@ int main() {
 
     printf("Fila: ");
     fila_mostrar(&fila);
-
-    PILHA pilha;
-    pilha.topo = NULL;
 
     for (int i = 0; i < sequenciaTamanho; i++) {
         char letra = fila_remover(&fila);
